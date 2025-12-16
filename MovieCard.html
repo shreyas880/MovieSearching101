@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="MovieCard.css" />
+    <title>Movie Searching 101</title>
+  </head>
+  <body>
+    <!-- Header containing sidebar, page heading and theme toggle switch -->
+    <header class="top">
+
+      <!-- Sidebar elements enclosed within a class -->
+      <div class="sidebar">
+        <span class="sidebar_button">
+          <img src="assets/sidebar.png" class="sidebar_img"></img>
+        </span>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn"
+            >&times;</a
+          >
+          <a id="Home" href="index.html">Home</a> 
+          <a id="WatchLater" href="WatchLater.html">Watch Later</a>
+          <a id="API" href="https://www.omdbapi.com/">API</a>
+        </div>
+
+        <div class="heading">
+          <a href="index.html" class="heading_a">
+            <h1>Movie Searching 101</h1>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Button to go to previous window -->
+      <div class="back">
+        <span class="back_button">
+          <img src="assets/back.png" class="back_img"></img>
+        </span>
+      </div>
+
+      <!-- Theme Button -->
+      <div class="theme-toggle">
+        <button id="themeBtn">🌙</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="card-outer"></div>  <!-- Container for movie to be displayed  -->
+      <div id="watchlater-feedback">✔ Added</div>  <!-- Visual Confirmation on clicking of button -->
+
+      <!-- LLM-based recommendations -->
+      <section class="recommendations">
+        <h2 class="recommend-title">Movie Recommendations</h2>
+        <div id="recommendations-container"></div>
+      </section>
+    </main>
+
+    <script src="./MovieCard.js"></script>
+  </body>
+</html>

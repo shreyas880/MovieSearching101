@@ -1,0 +1,366 @@
+styles.css
+
+:root {
+  --bg: #f6f7f9;
+  --text: #1a1a1a;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.12);
+  --icon-filter: invert(0);
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #e2e8f0;
+  --card-bg: #1e293b;
+  --card-shadow: rgba(0, 0, 0, 0.35);
+  --icon-filter: invert(1);
+}
+
+/* Reset box model */
+* {
+  box-sizing: border-box;
+}
+/* Page layout */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Header row: sidebar left, title centered */
+.top {
+  display: flex;
+  align-items: center; /* vertically center sidebar + text */
+  justify-content: center; /* base centering */
+  position: relative; /* so sidebar can sit at far left */
+  padding: 0.5rem 1rem;
+}
+/* Sidebar stays at absolute left */
+#sidebar {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Center header text */
+.heading {
+  margin: 0;
+  text-align: center;
+  flex: 0 1 auto;
+}
+
+.heading_a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.heading h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Main area: stack content vertically, center horizontally */
+.main {
+  display: flex;
+  flex-direction: column; /* 🔑 KEY FIX */
+  align-items: center; /* center children horizontally */
+  gap: 2rem; /* spacing between search + trending */
+  margin-top: 1.5rem;
+}
+
+/* Search row: textarea + button on same line, centered */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: 0.2s ease;
+}
+
+.search:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive textarea width */
+#search {
+  min-width: 220px;
+  width: clamp(260px, 40vw, 520px);
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.05rem;
+  resize: none;
+}
+
+/* Remove default button padding so icon fits exactly */
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#searchButton {
+  padding: 0.4rem;
+  border-radius: 50%;
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: 0.2s ease;
+}
+
+#searchButton:hover {
+  transform: scale(1.1);
+}
+
+.search:focus-within {
+  box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.4);
+}
+
+#searchButton {
+  height: 26px;
+  width: 26px;
+  background-image: url("assets/searchButton.png");
+  background-size: contain;
+  background-position: center;
+  filter: var(--icon-filter); /* auto inverter for dark mode */
+}
+
+#sidebar {
+  height: 25px;
+  width: 25px;
+  margin: 0px;
+  padding: 0px;
+  background-image: url("assets/sidebar.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.top {
+  display: flex;
+  align-items: center; /* vertically center sidebar + text */
+  justify-content: center; /* base centering */
+  position: relative; /* so sidebar can sit at far left */
+  padding: 0.5rem 1rem;
+}
+
+#appendData {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(220px, 1fr)
+  ); /* responsive 4 per row */
+  gap: 1.5rem; /* spacing between cards */
+  padding: 1rem;
+}
+
+.sidenav {
+  background-color: var(--card-bg);
+  color: var(--text);
+  box-shadow: 4px 0 20px var(--card-shadow);
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.sidebar_button {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: 0.2s ease;
+}
+
+.sidebar_button:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.sidebar_img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  filter: var(--icon-filter);
+}
+
+.card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.card img {
+  height: 320px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 0.8rem 1rem;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.card-text {
+  color: #555;
+  margin-top: 0.3rem;
+  cursor: pointer;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#themeBtn {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: var(--icon-filter);
+}
+
+#suggestions {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  border-radius: 10px;
+  z-index: 99;
+}
+
+.suggestion-item {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.suggestion-item:hover {
+  background: rgba(100, 149, 237, 0.15);
+}
+
+.clear-history-btn {
+  margin-top: 1rem;
+  margin-left: 32px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.clear-history-btn:hover {
+  background: #b91c1c;
+}
+
+#trending-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+  justify-items: start; /* ensures left alignment */
+}
+
+#trending {
+  width: 100%;
+  max-width: 1200px; /* keeps cards readable on large screens */
+  padding: 0 1rem;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.6rem;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.removal-toast {
+  background: #dc2626;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}

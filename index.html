@@ -1,0 +1,66 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Movie Searching 101</title>
+  </head>
+  <body>
+    <!-- Header containing sidebar, page heading and theme toggle switch -->
+    <header class="top">
+      
+      <!-- Sidebar elements enclosed within a class -->
+      <div class="sidebar">
+        <span class="sidebar_button">
+          <img src="assets/sidebar.png" class="sidebar_img"></img>
+        </span>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn"
+            >&times;</a
+          >
+          <a id="Home" href="index.html">Home</a> 
+          <a id="WatchLater" href="WatchLater.html">Watch Later</a>
+          <a id="API" href="https://www.omdbapi.com/">API</a>
+          <button onclick="clearHistory()" class="clear-history-btn">Clear Search History</button>
+        </div>
+
+        <div class="heading">
+          <a href="index.html" class="heading_a">
+            <h1>Movie Searching 101</h1>
+          </a>
+        </div>
+
+        <div class="theme-toggle">
+          <button id="themeBtn">🌙</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main class to center the non-heading elements -->
+    <main class="main">
+      <!-- Search Bar along with container for Trending Movies to be loaded-->
+      <div class="search">
+        <textarea
+          placeholder="Search Movie:"
+          rows="1"
+          cols="25%"
+          autocorrect="on"
+          id="search"
+        ></textarea>
+        <button id="searchButton" type="submit" aria-label="Search"></button>
+      </div>
+      <section id="trending">
+        <h3>Trending Movies</h3>
+        <div id="trending-container"></div>
+      </section>
+    </main>
+
+    <!-- Container to show that movies are being loaded -->
+    <div id="loading"></div>
+
+    <!-- Container to load the movies into -->
+    <div id="appendData"></div>
+
+    <script src="App.js"></script>
+  </body>
+</html>

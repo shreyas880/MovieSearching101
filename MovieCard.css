@@ -1,0 +1,532 @@
+:root {
+  --bg: #f6f7f9;
+  --text: #1a1a1a;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.12);
+  --icon-filter: invert(0); /* dark icons on light background */
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #e2e8f0;
+  --card-bg: #1e293b;
+  --card-shadow: rgba(0, 0, 0, 0.35);
+  --icon-filter: invert(1); /* makes white icons for dark mode */
+}
+
+Reset box model * {
+  box-sizing: border-box;
+}
+/* Page layout */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+/* Header row: sidebar left, title centered */
+.top {
+  display: flex;
+  align-items: center; /* vertically center sidebar + text */
+  justify-content: center; /* base centering */
+  position: relative; /* so sidebar can sit at far left */
+  padding: 0.5rem 1rem;
+}
+/* Sidebar stays at absolute left */
+#sidebar {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Center header text */
+.heading {
+  margin: 0;
+  text-align: center;
+  flex: 0 1 auto;
+}
+
+.heading_a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.heading h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.socials {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Main area: stack content vertically, center horizontally */
+.main {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  margin-top: 1.5rem;
+}
+/* Search row: textarea + button on same line, centered */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between textarea and button */
+}
+
+/* Responsive textarea width */
+#search {
+  min-width: 220px;
+  width: clamp(250px, 40vw, 500px); /* scales with screen, with min/max */
+}
+
+/* Remove default button padding so icon fits exactly */
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#submitButton {
+  height: 25px;
+  width: 35px;
+  background-image: url("assets/searchButton.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#sidebar {
+  height: 25px;
+  width: 25px;
+  margin: 0px;
+  padding: 0px;
+  background-image: url("assets/sidebar.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.top {
+  display: flex;
+  align-items: center; /* vertically center sidebar + text */
+  justify-content: center; /* base centering */
+  position: relative; /* so sidebar can sit at far left */
+  padding: 0.5rem 1rem;
+}
+
+.appendData {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.sidenav {
+  background-color: var(--card-bg);
+  color: var(--text);
+  box-shadow: 4px 0 20px var(--card-shadow);
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  color: var(--text);
+  opacity: 0.8;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  opacity: 1;
+  color: var(--text);
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.sidebar_button {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: 0.2s ease;
+}
+
+.sidebar_button:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.sidebar_img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  filter: var(--icon-filter);
+}
+
+@media screen and (max-height: 450px) {
+  .back {
+    padding-top: 15px;
+  }
+}
+
+.back {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  /* position: fixed; Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.back_button {
+  position: absolute;
+  left: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: 0.2s ease;
+}
+
+.back_button:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.back_img {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+  filter: var(--icon-filter);
+}
+
+.movie-poster {
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  color: #e2e8f0;
+}
+
+.movie-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.movie-meta {
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.movie-plot {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.movie-card {
+  display: flex;
+  gap: 2rem;
+  background: var(--card-bg);
+  box-shadow: 0 8px 32px var(--card-shadow);
+  border-radius: 18px;
+  width: min(1100px, 90vw); /* scales with screen, stays elegant */
+  max-width: 100%;
+  animation: fadeIn 0.6s ease-out;
+  transition: transform 0.3s ease;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+}
+
+.movie-poster {
+  width: 250px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: floatPoster 3s infinite ease-in-out;
+}
+
+/* Floating gentle poster motion */
+@keyframes floatPoster {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Title, meta, plot */
+.movie-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.rating-badge {
+  display: inline-block;
+  background: #facc15;
+  color: #1a1a1a;
+  padding: 0.3rem 0.7rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.watch_later-btn {
+  margin-top: 1rem;
+  background: #2563eb;
+  padding: 0.8rem 1.4rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.watch_later-btn:hover {
+  background: #1e40af;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .movie-card {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  .movie-poster {
+    width: 100%;
+  }
+}
+
+.card-outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#themeBtn {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.watch_later-btn.remove-mode {
+  background: #dc2626;
+}
+
+.watch_later-btn.remove-mode:hover {
+  background: #b91c1c;
+}
+
+.recommendations {
+  padding: 2rem 1rem 3rem;
+}
+
+.recommend-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+/* #recommendations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+} */
+
+#recommendations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: start; /* LEFT aligned grid */
+}
+
+#recommendations-container .movie-card {
+  width: auto; /* allow natural sizing */
+  justify-self: stretch; /* fill grid column */
+  background: transparent;
+  box-shadow: none;
+}
+
+/* #recommendations-container .movie-card {
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+} */
+
+#recommendations-container .movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px var(--card-shadow);
+}
+
+#recommendations-container .card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#recommendations-container .card-img-top {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+/* Poster sizing */
+#recommendations-container .card-img-top {
+  height: 320px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Card body alignment */
+#recommendations-container .card-body {
+  padding: 0.8rem 1rem;
+  text-align: center;
+}
+
+#watchlater-feedback {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+
+/* #watchlater-feedback-remove {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  z-index: 10000;
+} */
+
+#watchlater-feedback.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.removal-toast {
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column-reverse; /* newest on top */
+  gap: 0.6rem;
+  z-index: 9999;
+}

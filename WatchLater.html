@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./WatchLater.css" />
+    <title>Movie Searching 101</title>
+  </head>
+  <body>
+    <!-- Header containing sidebar and the page heading -->
+    <header class="top">
+      <div class="sidebar">
+        <span class="sidebar_button">
+          <img src="assets/sidebar.png" class="sidebar_img"></img>
+        </span>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn"
+            >&times;</a
+          >
+          <a id="Home" href="index.html">Home</a> 
+          <a id="Favourites" href="WatchLater.html">Watch Later</a>
+          <a id="API" href="https://www.omdbapi.com/">API</a>
+          <!-- <a href="">Contact</a> -->
+        </div>
+
+        <div class="heading">
+          <a href="index.html" class="heading_a">
+            <h1>Movie Searching 101</h1>
+          </a>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+      </div>
+
+      <div id="total-watchtime" class="watchtime-badge">
+        Total: 0 mins
+      </div>
+
+      <div class="theme-toggle">
+        <button id="themeBtn">🌙</button>
+      </div>
+    </header>
+    
+    <div class="sorting-mode styled-sorting">
+      <label class="sort-option">
+        <input type="radio" name="Sorting" value="Runtime" checked/>
+        <span>Longest Runtime</span>
+      </label>
+
+      <label class="sort-option">
+        <input type="radio" name="Sorting" value="Rating" />
+        <span>Lowest Rating</span>
+      </label>
+      
+      <label class="sort-option">
+        <input type="radio" name="Sorting" value="Effi" />
+        <span>Economy Mode</span>
+      </label>
+    </div>
+    
+    <div class="watchtime-container">
+      <input
+        type="number"
+        id="watch-time-input"
+        placeholder="Time available (mins)"
+      />
+    </div>
+    
+    <div id="appendData"></div>
+
+
+    <script src="./WatchLater.js"></script>
+    <!-- <script src="Search.js"></script> -->
+  </body>
+</html>
